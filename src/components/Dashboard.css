@@ -1,0 +1,247 @@
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  color: black;
+}
+
+.main-content {
+  width: fit-content;
+  flex: 1;
+  padding: 20px;
+  background-color: white;
+  color: black;
+  overflow-y: auto;
+  
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.add-button {
+  font-size: 24px;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: transparent;
+  border: 2px solid black;
+  border-radius: 5px;
+  color: black;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.add-button:hover {
+  background-color: black;
+  color: white;
+}
+
+.user-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  color: black;
+  transition: box-shadow 0.3s;
+}
+
+.user-card:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-weight: bold;
+  font-size: 16px;
+  color: black;
+}
+
+.user-location {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: white;
+  color: black;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 90%;
+  position: relative;
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: black;
+}
+
+.modal h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.modal input,
+.modal select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: black;
+  background-color: white;
+}
+
+.modal label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  color: black;
+}
+
+.modal button {
+  padding: 10px 15px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal button:first-of-type {
+  background-color: #4A90E2;
+  color: white;
+}
+
+.modal button:last-of-type {
+  background-color: #ccc;
+  color: black;
+}
+
+/* Sidebar styles */
+.sidebar {
+  width: 80px;
+  background-color: #6a4eff; /* Purple background */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.sidebar a {
+  color: white;
+  margin: 15px 0;
+  font-size: 24px;
+  text-decoration: none;
+}
+
+.sidebar a:hover {
+  color: #d1d1d1;
+}   
+
+/* Container */
+.search-bar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  background-color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;              /* убрал крупное скругление */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+  border: 1px solid #e0e0e0;          /* рамка вокруг всей панели */
+}
+
+.search-bar:focus-within {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Поле ввода */
+.search-bar input {
+  flex: 1;
+  border: 1px solid #ccc;             /* добавлена рамка инпута */
+  border-radius: 0.25rem;              /* меньше скругление */
+  background: transparent;
+  font-size: 1rem;
+  padding: 0.4rem 0.5rem;              /* чуть увеличил отступы */
+  outline: none;
+  color: #333333;
+}
+
+/* Подсказка */
+.search-bar input::placeholder {
+  color: #aaa;
+}
+
+/* Кнопка поиска */
+.search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.5rem;
+  background-color: #6e00ff;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.search-button svg {
+  stroke: #ffffff;
+}
+
+.search-button:hover {
+  background-color: #5800cc;
+  transform: translateY(-1px);
+}
+
+.search-button:active {
+  background-color: #4500a8;
+  transform: translateY(0);
+}

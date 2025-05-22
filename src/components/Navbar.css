@@ -1,0 +1,51 @@
+.navbar {
+  display: grid;
+  justify-content: center;
+  place-items: center;
+
+  grid-template-rows: auto;
+  grid-template-columns: 1fr;
+  grid-auto-flow:dense;
+
+  /* Background Gradient */
+  background: hsla(208, 100%, 9%, 1);
+  background: linear-gradient(135deg, hsla(208, 100%, 9%, 1) 0%, hsla(208, 100%, 9%, 1) 0%, hsla(206, 100%, 5%, 1) 100%);
+  background: -moz-linear-gradient(135deg, hsla(208, 100%, 9%, 1) 0%, hsla(208, 100%, 9%, 1) 0%, hsla(206, 100%, 5%, 1) 100%);
+  background: -webkit-linear-gradient(135deg, hsla(208, 100%, 9%, 1) 0%, hsla(208, 100%, 9%, 1) 0%, hsla(206, 100%, 5%, 1) 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#001A30", endColorstr="#001A30", GradientType=1 );
+  
+  color: #fff;
+  padding: 1rem 2rem;
+}
+
+/* === Navigatie ul === */
+.navbar_navigation .nav_sections {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  gap: 15vw;
+  margin: 0;
+  padding: 0;
+}
+
+/* === Individuele nav-items === */
+.navbar_navigation .nav_sections li {
+  text-align: center;
+  align-items: center;
+  width: fit-content;
+}
+
+/* === Link styling === */
+.navbar_navigation .nav_sections li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.navbar_navigation .nav_sections li a:hover {
+  color: #b61326;
+}

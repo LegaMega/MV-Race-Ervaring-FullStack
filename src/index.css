@@ -1,0 +1,201 @@
+body {
+  background: #fff;
+  background-image: url('./F1Background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  font-family: "Montserrat", sans-serif;
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  
+}
+
+header {
+  text-align: center;
+  padding: 1rem;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.highlight-text {
+  color: #ffd300;
+}
+
+/* === Homepage Titles === */
+
+.home-title-container {
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+h1, h2 {
+  font-family: "Michroma", sans-serif;
+  margin: 0;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+.centered-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15%;
+  font-size: 3vw;
+  text-align: center;
+  padding: 0 1rem;
+  
+}
+
+.centered-subtitle {
+  margin-top: 1%;
+  margin-bottom: 5%;
+  font-size: 1.4vw;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+/* === Buttons === */
+
+.f1-btn-container {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  padding: 20px 0;
+}
+
+.f1-btn {
+  background: linear-gradient(90deg, #d41e33 0%, #920d1d 100%);
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  padding: 48px 86px;
+  width: fit-content;
+  max-width: 90vw;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.f1-btn:hover,
+.f1-btn:focus {
+  background: linear-gradient(90deg, #b61326 0%, #740613 100%);
+  transform: translateY(-2px) scale(1.03);
+}
+
+/* === Responsivity === */
+
+@media (max-width: 768px) {
+  .centered-title {
+    font-size: 36px;
+    margin-top: 20%;
+  }
+
+  .centered-subtitle {
+    font-size: 18px;
+  }
+
+  .f1-btn {
+    padding: 32px 64px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .centered-title {
+    font-size: 28px;
+    margin-top: 25%;
+  }
+
+  .centered-subtitle {
+    font-size: 16px;
+  }
+
+  .f1-btn {
+    padding: 24px 48px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ========== Boekingpagina (gescoped) ========== */
+
+.booking-container {
+  background-color: #2e2e2e;
+  color: #fff;
+  padding: 2rem;
+  min-height: 100vh;
+  background-image: url('images/thumbnail_F1Background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 1;
+}
+
+.booking-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: -1;
+}
+
+.booking-container h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.booking-container label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.booking-container input,
+.booking-container select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #444;
+  color: #fff;
+}
+
+.booking-container input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.booking-container input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.booking-container .form-group {
+  margin-bottom: 1rem;
+}
+
+.booking-container .booking-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
