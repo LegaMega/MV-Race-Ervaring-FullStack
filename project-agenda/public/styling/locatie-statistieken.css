@@ -1,0 +1,61 @@
+/* Locatie statistieken pagina specifieke styling */
+.stats-container {
+    max-width: 700px;
+    margin: 60px auto;
+    padding: 40px 30px;
+    background: rgba(0, 26, 48, 0.97);
+    border-radius: 16px;
+    box-shadow: 0 0 30px 0 #001a30, 0 0 0 4px #ffd300 inset;
+    position: relative;
+    z-index: 1;
+}
+.stats-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.stats-header h1 {
+    font-size: 2em;
+    color: #ffd300;
+    font-family: 'Orbitron', Arial, sans-serif;
+    margin-bottom: 10px;
+}
+.location-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(0, 26, 48, 0.8);
+    border: 2px solid #ffd300;
+    border-radius: 12px;
+    overflow: hidden;
+}
+.location-table th, .location-table td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid #ffd300;
+    color: #fff;
+}
+.location-table th {
+    background: #b61326;
+    color: #ffd300;
+    font-weight: bold;
+}
+.location-table tr:hover {
+    background: rgba(182, 19, 38, 0.2);
+}
+.back-btn {
+    margin-top: 30px;
+    padding: 12px 28px;
+    background: #ffd300;
+    color: #001a30;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-family: 'Orbitron', Arial, sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #0008;
+    transition: background 0.2s, transform 0.2s;
+}
+.back-btn:hover {
+    background: #b61326;
+    color: #ffd300;
+} 

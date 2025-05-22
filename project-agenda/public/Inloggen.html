@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inloggen - Max Verstappen Meet & Greet</title>
+    <link rel="stylesheet" href="./styling/styles.css">
+    <link rel="stylesheet" href="./styling/navbar.css">
+    <link rel="stylesheet" href="./styling/login.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar_navigation">
+            <ul class="nav_sections">
+                <li><a href="/">Welkom</a></li>
+                <li><a href="/Boekingpagina">Boeken</a></li>
+                <li><a href="/Info">Info</a></li>
+                <li><a href="/Inloggen">Inloggen</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="login-container">
+        <h1>Inloggen</h1>
+        <form class="login-form" id="loginForm">
+            <div class="form-group">
+                <label for="username">Gebruikersnaam:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Wachtwoord:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="login-button">Inloggen</button>
+            <div id="errorMessage" class="error-message">
+                Onjuiste gebruikersnaam of wachtwoord
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+            
+            if (username === 'admin' && password === 'admin') {
+                // Succesvol ingelogd
+                sessionStorage.setItem('isLoggedIn', 'true');
+                window.location.href = 'admin-dashboard.html'; // Redirect naar admin dashboard
+            } else {
+                // Toon foutmelding
+                errorMessage.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,162 @@
+/* Dashboard specifieke styling */
+.dashboard-container {
+    max-width: 1400px;
+    margin: 50px auto;
+    padding: 50px 40px;
+    background: rgba(0, 26, 48, 0.97);
+    border-radius: 16px;
+    box-shadow: 0 0 30px 0 #001a30, 0 0 0 4px #ffd300 inset;
+    position: relative;
+    z-index: 1;
+}
+.dashboard-header {
+    text-align: center;
+    margin-bottom: 30px;
+    background: linear-gradient(90deg, #001a30 0%, #001a30 50%, #b61326 100%);
+    padding: 28px 0 18px 0;
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 4px 16px 0 #0008;
+    position: relative;
+    border-bottom: 4px solid #b61326;
+}
+.dashboard-header h1 {
+    font-size: 2.3em;
+    letter-spacing: 2px;
+    color: #ffd300;
+    text-shadow: 0 2px 8px #000, 0 0 2px #b61326;
+    margin-bottom: 8px;
+    font-family: 'Orbitron', Arial, sans-serif;
+}
+.dashboard-header .dashboard-btn {
+    margin-top: 20px;
+    padding: 12px 28px;
+    background: #ffd300;
+    color: #001a30;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-family: 'Orbitron', Arial, sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #0008;
+    transition: background 0.2s, transform 0.2s;
+}
+.dashboard-header .dashboard-btn:hover {
+    background: #b61326;
+    color: #ffd300;
+}
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+.dashboard-card {
+    background: rgba(0, 26, 48, 0.8);
+    border: 2px solid #ffd300;
+    border-radius: 12px;
+    padding: 20px;
+    color: #fff;
+}
+.dashboard-card h2 {
+    color: #ffd300;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    border-bottom: 2px solid #b61326;
+    padding-bottom: 10px;
+}
+.appointments-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: rgba(0, 26, 48, 0.8);
+    border: 2px solid #ffd300;
+    border-radius: 12px;
+    overflow: hidden;
+}
+.appointments-table th,
+.appointments-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ffd300;
+    color: #fff;
+}
+.appointments-table th {
+    background: #b61326;
+    color: #ffd300;
+    font-weight: bold;
+}
+.appointments-table tr:hover {
+    background: rgba(182, 19, 38, 0.2);
+}
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+.action-button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Orbitron', Arial, sans-serif;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+.edit-button {
+    background: #ffd300;
+    color: #001a30;
+}
+.delete-button {
+    background: #b61326;
+    color: #fff;
+}
+.action-button:hover {
+    transform: scale(1.05);
+}
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+.stat-card {
+    background: rgba(0, 26, 48, 0.8);
+    border: 2px solid #ffd300;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+}
+.stat-number {
+    font-size: 2.5em;
+    color: #ffd300;
+    margin: 10px 0;
+    font-family: 'Orbitron', Arial, sans-serif;
+}
+.stat-label {
+    color: #fff;
+    font-size: 1.1em;
+}
+.search-bar-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.search-bar {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 18px;
+    padding: 12px 18px;
+    border: 2px solid #ffd300;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-family: 'Orbitron', Arial, sans-serif;
+    background: #001a30;
+    color: #ffd300;
+    box-shadow: 0 2px 8px #0008;
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+.search-bar:focus {
+    border: 2px solid #b61326;
+    box-shadow: 0 0 8px #b61326;
+} 

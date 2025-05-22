@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Max Verstappen Meet & Greet</title>
+    <link rel="stylesheet" href="./styling/styles.css">
+    <link rel="stylesheet" href="./styling/navbar.css">
+    <link rel="stylesheet" href="./styling/dashboard.css">
+    <script src="https://unpkg.com/mongodb@5.9.2/dist/mongodb.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar_navigation">
+            <ul class="nav_sections">
+                <li><a href="/">Welkom</a></li>
+                <li><a href="/Boekingpagina">Boeken</a></li>
+                <li><a href="/Info">Info</a></li>
+                <li><a href="Inloggen.html">Inloggen</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1>Admin Dashboard</h1>
+            <button onclick="window.location.href='locatie-statistieken.html'" class="dashboard-btn">Bekijk locatie statistieken</button>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="totalAppointments">0</div>
+                <div class="stat-label">Totaal Afspraken</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="todayAppointments">0</div>
+                <div class="stat-label">Afspraken Vandaag</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="weekAppointments">0</div>
+                <div class="stat-label">Afspraken Deze Week</div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <h2>Afspraken Overzicht</h2>
+                <div class="search-bar-wrapper"><input type="text" id="searchInput" class="search-bar" placeholder="Zoek op naam, email, locatie, datum..."></div>
+                <table class="appointments-table">
+                    <thead>
+                        <tr>
+                            <th>Datum</th>
+                            <th>Start Tijd</th>
+                            <th>Eind Tijd</th>
+                            <th>Locatie</th>
+                            <th>Naam</th>
+                            <th>Email</th>
+                            <th>Telefoon</th>
+                            <th>Acties</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appointmentsTableBody">
+                        <!-- Data wordt hier dynamisch ingeladen -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Controleer of gebruiker is ingelogd
+        function checkAuth() {
+            const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+            if (!isLoggedIn) {
+                window.location.href = 'Inloggen.html';
+            }
+        }
+
+        let allAppointments = [];
+
+        // Laad de afspraken data via de Node.js API
+        async function loadAppointments() {
+            try {
+                const response = await fetch('http://localhost:3001/api/events');
+                const appointments = await response.json();
+                allAppointments = appointments;
+                renderAppointmentsTable(appointments);
+                // Update statistieken
+                updateStats(appointments);
+            } catch (error) {
+                console.error('Error loading appointments:', error);
+            }
+        }
+
+        function renderAppointmentsTable(appointments) {
+            const tableBody = document.getElementById('appointmentsTableBody');
+            tableBody.innerHTML = '';
+            appointments.forEach(appointment => {
+                const row = document.createElement('tr');
+                row.setAttribute('data-id', appointment._id);
+                row.innerHTML = `
+                    <td>${formatDate(appointment.date)}</td>
+                    <td>${appointment.startTime || '-'}</td>
+                    <td>${appointment.endTime || '-'}</td>
+                    <td>${appointment.location || '-'}</td>
+                    <td>${appointment.name || appointment.user_name || '-'}</td>
+                    <td>${appointment.email || appointment.user_email || '-'}</td>
+                    <td>${appointment.phone || '-'}</td>
+                    <td class="action-buttons">
+                        <button class="action-button edit-button" onclick="editAppointment('${appointment._id}')">Bewerken</button>
+                        <button class="action-button delete-button" onclick="deleteAppointment('${appointment._id}')">Verwijderen</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const term = this.value.toLowerCase();
+            const filtered = allAppointments.filter(a =>
+                (a.name || '').toLowerCase().includes(term) ||
+                (a.email || '').toLowerCase().includes(term) ||
+                (a.location || '').toLowerCase().includes(term) ||
+                (a.date || '').toLowerCase().includes(term) ||
+                (a.startTime || '').toLowerCase().includes(term) ||
+                (a.endTime || '').toLowerCase().includes(term) ||
+                (a.phone || '').toLowerCase().includes(term)
+            );
+            renderAppointmentsTable(filtered);
+        });
+
+        // Update statistieken
+        function updateStats(appointments) {
+            const today = new Date().toISOString().split('T')[0];
+            const weekStart = new Date();
+            weekStart.setDate(weekStart.getDate() - weekStart.getDay());
+            const weekStartStr = weekStart.toISOString().split('T')[0];
+
+            const todayCount = appointments.filter(a => (a.date || '').slice(0, 10) === today).length;
+            const weekCount = appointments.filter(a => (a.date || '').slice(0, 10) >= weekStartStr).length;
+
+            document.getElementById('totalAppointments').textContent = appointments.length;
+            document.getElementById('todayAppointments').textContent = todayCount;
+            document.getElementById('weekAppointments').textContent = weekCount;
+        }
+
+        // Datum formatteren
+        function formatDate(dateString) {
+            if (!dateString) return '-';
+            const date = new Date(dateString);
+            if (isNaN(date)) return dateString;
+            return date.toLocaleDateString('nl-NL');
+        }
+
+        // Afspraak bewerken (placeholder)
+        function editAppointment(id) {
+            alert('Bewerken functionaliteit komt binnenkort');
+        }
+
+        // Afspraak verwijderen via de Node.js API
+        async function deleteAppointment(id) {
+            try {
+                const response = await fetch(`http://localhost:3001/api/events/${id}`, {
+                    method: 'DELETE'
+                });
+                // Verwijder de rij direct uit de tabel via data-id, ongeacht het resultaat
+                const row = document.querySelector(`tr[data-id="${id}"]`);
+                if (row) {
+                    row.remove();
+                    console.log('Rij verwijderd uit de DOM');
+                    // Update totaal aantal afspraken direct
+                    const totalElem = document.getElementById('totalAppointments');
+                    if (totalElem) {
+                        const current = parseInt(totalElem.textContent, 10) || 0;
+                        totalElem.textContent = Math.max(0, current - 1);
+                    }
+                    // Update afspraken vandaag en deze week direct
+                    const todayElem = document.getElementById('todayAppointments');
+                    const weekElem = document.getElementById('weekAppointments');
+                    // Haal de datum van de verwijderde afspraak uit de rij
+                    const dateCell = row.querySelector('td');
+                    if (dateCell) {
+                        const removedDate = dateCell.textContent.trim();
+                        const today = new Date().toLocaleDateString('nl-NL');
+                        if (removedDate === today && todayElem) {
+                            const currentToday = parseInt(todayElem.textContent, 10) || 0;
+                            todayElem.textContent = Math.max(0, currentToday - 1);
+                        }
+                        // Check of de verwijderde datum in deze week valt
+                        const removedDateObj = new Date(dateCell.textContent.split('-').reverse().join('-'));
+                        const now = new Date();
+                        const weekStart = new Date(now);
+                        weekStart.setDate(now.getDate() - now.getDay() + 1); // Maandag
+                        const weekEnd = new Date(weekStart);
+                        weekEnd.setDate(weekStart.getDate() + 6); // Zondag
+                        if (removedDateObj >= weekStart && removedDateObj <= weekEnd && weekElem) {
+                            const currentWeek = parseInt(weekElem.textContent, 10) || 0;
+                            weekElem.textContent = Math.max(0, currentWeek - 1);
+                        }
+                    }
+                } else {
+                    console.warn('Geen rij gevonden met data-id:', id);
+                }
+                // (optioneel) update statistieken
+            } catch (error) {
+                console.error('Error deleting appointment:', error);
+                // Geen pop-up tonen
+            }
+        }
+
+        // Check authenticatie bij het laden van de pagina
+        checkAuth();
+        // Laad de afspraken data
+        loadAppointments();
+    </script>
+</body>
+</html>

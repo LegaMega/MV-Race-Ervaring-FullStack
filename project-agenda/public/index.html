@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Max Verstappen Meet & Greet</title>
+    <link rel="stylesheet" href="./styling/styles.css">
+    <link rel="stylesheet" href="./styling/navbar.css">
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("MSAPsrG9TQfTrbOFu");
+        })();
+    </script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar_navigation">
+            <ul class="nav_sections">
+                <li><a href="http://localhost:5173/">Welkom</a></li>
+                <li><a href="/Boekingpagina">Boeken</a></li>
+                <li><a href="http://localhost:5173/Info">Info</a></li>
+                <li><a href="Inloggen.html">Inloggen</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="calendar-header">
+            <h1>Max Verstappen Meet & Greet</h1>
+            <div class="date-selection">
+                <input type="date" id="datePicker" class="date-picker">
+                <div id="selectedDate" class="selected-date"></div>
+            </div>
+            <div class="date-navigation">
+                <button id="prevWeek">Vorige Week</button>
+                <button id="nextWeek">Volgende Week</button>
+            </div>
+        </div>
+        <div class="calendar-grid">
+            <div class="time-column">
+                <div class="time-header">Tijd</div>
+                <div class="time-slots"></div>
+            </div>
+            <div class="week-container">
+                <div class="week-header"></div>
+                <div class="week-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Modal -->
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Afspraak</h2>
+            <form id="eventForm" action="process_form.php" method="POST">
+                <div class="form-group">
+                    <label for="eventDate">Datum:</label>
+                    <input type="date" id="eventDate" name="date" required readonly>
+                </div>
+                <div class="form-group">
+                    <label for="eventStartTime">Start Tijd:</label>
+                    <input type="time" id="eventStartTime" name="startTime" required readonly>
+                </div>
+                <div class="form-group">
+                    <label for="eventEndTime">Eind Tijd:</label>
+                    <input type="time" id="eventEndTime" name="endTime" required readonly>
+                </div>
+                <div class="form-group">
+                    <label for="eventLocation">Locatie:</label>
+                    <select id="eventLocation" name="location" required>
+                        <option value="">Selecteer een locatie</option>
+                        <option value="Monaco (Circuit de Monaco)">Monaco (Circuit de Monaco)</option>
+                        <option value="Nederland (Amsterdam)">Nederland (Amsterdam)</option>
+                        <option value="Saudi Arabia (Jeddah)">Saudi Arabia (Jeddah)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="eventName">Naam:</label>
+                    <input type="text" id="eventName" name="name" required>
+                    <input type="hidden" id="eventUserName" name="user_name">
+                </div>
+                <div class="form-group">
+                    <label for="eventEmail">Email:</label>
+                    <input type="email" id="eventEmail" name="email" required>
+                    <input type="hidden" id="eventUserEmail" name="user_email">
+                </div>
+                <div class="form-group">
+                    <label for="eventPhone">Telefoonnummer:</label>
+                    <input type="tel" id="eventPhone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventDescription">Beschrijving:</label>
+                    <textarea id="eventDescription" name="description"></textarea>
+                </div>
+                <button type="submit">Verzenden</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="customPopup" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#001a30;color:#ffd300;padding:32px 48px;border-radius:16px;box-shadow:0 4px 32px #000a,0 0 0 4px #ffd300 inset;font-size:1.5em;font-family:'Orbitron',Arial,sans-serif;z-index:10000;text-align:center;min-width:300px;max-width:90vw;"></div>
+    <div id="loadingOverlay" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;">
+        <div style="color:#ffd300;font-size:2em;font-family:'Orbitron',Arial,sans-serif;">Laden...</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
