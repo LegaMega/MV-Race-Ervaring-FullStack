@@ -1,0 +1,103 @@
+/* Algemene layout */
+body#info-page-body {
+  background-color: #0f172a; /* Donkerblauw / zwartblauw achtergrond */
+  font-family: 'Orbitron', sans-serif;
+  color: #032e66;
+  margin: 0;
+  padding: 0;
+  background: url(/public/VerstappenBackground.jpeg) center/cover no-repeat;
+}
+
+/* Titel bovenaan */
+.info-title-container {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.centered-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+}
+
+/* Hoofdcontainer */
+body .max-w-3xl {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 32px;
+  margin-top: 40px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+}
+
+/* Tekst */
+p {
+  color: #ffffff;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+/* Info-box */
+.mt-4 {
+  background-color: rgba(239, 68, 68, 0.15);
+  border: 1px solid #f87171;
+  padding: 16px;
+  border-radius: 12px;
+  color: #fca5a5;
+  font-weight: 600;
+}
+
+/* Icons/emojis groter maken indien gewenst */
+.mt-4 p {
+  font-size: 1.1rem;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: rgba(0,0,0,0.6);
+  padding: 1rem;
+  z-index: 1000;
+}
+.navbar ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+.navbar a {
+  color: white;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+  .main-container {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+footer {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+
+/* Countdown Title & Text Colors */
+
+.countdownText {
+  color:  rgb(251, 255, 0);
+}
+.countdownTitle {
+  color: aqua;
+}
